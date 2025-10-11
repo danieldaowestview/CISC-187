@@ -1,0 +1,94 @@
+# Honors Activity 2: Data Analyst:
+
+## Code
+
+```cpp
+//
+// Created by daoda on 9/21/2025.
+//
+
+#include <iostream>
+#include <map>
+#include <vector>
+using namespace std;
+
+int main() {
+    std::map<std::string, int> monthlySales;
+    monthlySales["January"] = 100;
+    monthlySales["February"] = 113;
+    monthlySales["March"] = 110;
+    monthlySales["April"] = 85;
+    monthlySales["May"] = 81;
+    monthlySales["June"] = 101;
+    monthlySales["July"] = 94;
+    monthlySales["August"] = 106;
+    monthlySales["September"] = 105;
+    monthlySales["October"] = 102;
+    monthlySales["November"] = 86;
+    monthlySales["December"] = 63;
+    std::map<int, std::string> months;
+    months[0] = "January";
+    months[1] = "February";
+    months[2] = "March";
+    months[3] = "April";
+    months[4] = "May";
+    months[5] = "June";
+    months[6] = "July";
+    months[7] = "August";
+    months[8] = "September";
+    months[9] = "October";
+    months[10] = "November";
+    months[11] = "December";
+    std::map<std::string, int> consecutiveMonthsOfHighSales;
+    int sales[] = {100, 113, 110, 85, 81, 101, 94, 106, 105, 102, 86, 63};
+    int sum = sales[0] + sales[1]; // Two is one consecutive, one is none
+    bool start = false; // Keeping track of whether at beginning or end of consecutive
+    int counter = 1; // Startig on first pattern
+    int monthCounter = 2;
+    string consecutiveMonths = "January"; // Assembled string to add to map, ex. "January to February"
+    for (int i = 2; i < sizeof(sales) / sizeof(sales[0]); i++) {
+        cout << "Consecutive Pattern: " << counter << endl;
+        int currentSale = sales[i];
+        cout << "Current Sale: " << currentSale << endl;
+        int previousSale = sales[i - 1];
+        cout << "Previous Sale: " << previousSale << endl;
+        int previousPreviousSale = sales[i - 2];
+        cout << "Sale from two months ago: " << previousPreviousSale << endl;
+        if (currentSale > previousSale && currentSale > previousPreviousSale) { // If sales grow, add it to the consecutive
+            cout << "Current month of "<< months[i] << " sales of " << currentSale << " have grown compared to last month, adding it to the consecutive pattern sum of sales" << endl;
+            sum += currentSale;
+            monthCounter++;
+            cout << "Pattern is " << monthCounter << " months long" << endl;
+        } else if (currentSale < previousSale && currentSale > previousPreviousSale) { // If current sales is between last month and two months ago, then still add it to the consecutive
+            cout << "Current month of "<< months[i] << " sales of " << currentSale << " have decreased but still greater than sales from two months ago, adding it to the consecutive pattern sum of sales" << endl;
+            sum += currentSale;
+            monthCounter++;
+            cout << "Pattern is " << monthCounter << " months long" << endl;
+        }
+        else { // If currentSale is less than both previous sale and sale from two months ago, reset the consecutive
+            cout << "Current month of "<< months[i] << " sales of " << currentSale << " have decreased compared to both previous month sales and sales from two months ago, starting a new pattern" << endl;
+            if (monthCounter != 1) {
+                consecutiveMonths += " to ";
+                consecutiveMonths += months[i];
+                consecutiveMonthsOfHighSales[consecutiveMonths] = sum;
+            } else {
+                consecutiveMonthsOfHighSales[consecutiveMonths] = sum;
+            }
+            monthCounter = 0;
+            consecutiveMonths = months[i]; // Reset consecutive to next month
+            !start; // Reset back to true;
+            sum = sales[i]; // New pattern sum begins with current month sales
+            counter++;
+        }
+    }
+    for (const auto& pair : consecutiveMonthsOfHighSales) {
+        cout << pair.first << " : " << pair.second << endl;
+    }
+}
+```
+
+## Flowchart
+N/A
+
+## Video 
+N/A
