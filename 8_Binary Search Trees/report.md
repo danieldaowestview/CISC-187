@@ -4,15 +4,8 @@
 
 1. Binary Search Tree Diagram
    Here is the diagram of the binary search tree after inserting the sequence [1, 5, 9, 2, 4, 10, 6, 3, 8] in order.
-       1
-       \
-        5
-       / \
-      2   9
-       \ / \
-        4 6  10
-       /   \
-      3     8
+<img width="138" height="208" alt="image" src="https://github.com/user-attachments/assets/c84bc25c-6f83-4c9c-92ad-8b6c742a124f" />
+
 2. Maximum Search Steps in a Balanced BSTFor a well-balanced binary search tree with N values, the maximum number of steps required to search for a value is related to the height of the tree, which is approximately $\lfloor log_2(N) \rfloor + 1$.Number of values (N): 1,000Calculation: $\lfloor log_2(1000) \rfloor + 1$We know that $2^9 = 512$ and $2^{10} = 1024$.Therefore, $log_2(1000)$ is approximately 9.97.The maximum number of steps is $\lfloor 9.97 \rfloor + 1 = 9 + 1 = 10$.The maximum number of steps it would take is 10.****
 
 3. Algorithm to Find the Greatest Value
